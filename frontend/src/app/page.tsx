@@ -268,7 +268,7 @@ export default function HomePage() {
             Our Approach to fashion design
           </h2>
           <p className="font-[family-name:var(--font-body)] text-base text-center max-w-[685px] mx-auto mb-12 tracking-[2px]">
-            at elegant vogue , we blend creativity with craftsmanship to create fashion that transcends trends and stands the test of time each design is meticulously crafted, ensuring the highest quelity exqulsite finish
+            Step into our gallery — a showcase of bold expression and everyday luxury. Here, streetwear meets artistry, blending clean design with raw attitude. Each piece tells its own story — crafted for movement, confidence, and authenticity. Discover the looks that define the streets and inspire the culture.
           </p>
 
           {/* Approach Gallery - Staggered Layout */}
