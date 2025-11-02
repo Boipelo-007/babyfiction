@@ -2151,12 +2151,11 @@ video {
 .border-none {
   border-style: none;
 }
-.border-\[\#d7d7d7\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(215 215 215 / var(--tw-border-opacity, 1));
-}
 .border-\[--color-border\] {
   border-color: var(--color-border);
+}
+.border-\[d7d7d7\] {
+  border-color: d7d7d7;
 }
 .border-accent {
   border-color: hsl(var(--accent));
@@ -2213,25 +2212,20 @@ video {
 .border-white\/20 {
   border-color: rgb(255 255 255 / 0.2);
 }
-.border-\[d7d7d7\] {
-  border-color: d7d7d7;
-}
 .border-l-transparent {
   border-left-color: transparent;
 }
 .border-t-transparent {
   border-top-color: transparent;
 }
-.bg-\[\#8a8a8a\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(138 138 138 / var(--tw-bg-opacity, 1));
-}
-.bg-\[\#d9d9d9\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(217 217 217 / var(--tw-bg-opacity, 1));
-}
 .bg-\[--color-bg\] {
   background-color: var(--color-bg);
+}
+.bg-\[8a8a8a\] {
+  background-color: 8a8a8a;
+}
+.bg-\[d9d9d9\] {
+  background-color: d9d9d9;
 }
 .bg-accent {
   background-color: hsl(var(--accent));
@@ -2355,12 +2349,6 @@ video {
 }
 .bg-yellow-500\/10 {
   background-color: rgb(234 179 8 / 0.1);
-}
-.bg-\[8a8a8a\] {
-  background-color: 8a8a8a;
-}
-.bg-\[d9d9d9\] {
-  background-color: d9d9d9;
 }
 .bg-\[url\(\'\/assets\/images\/banners\/background-image\.jpg\'\)\] {
   background-image: url('/assets/images/banners/background-image.jpg');
@@ -2746,13 +2734,11 @@ video {
 .tracking-widest {
   letter-spacing: 0.1em;
 }
-.text-\[\#5e5e5e\] {
-  --tw-text-opacity: 1;
-  color: rgb(94 94 94 / var(--tw-text-opacity, 1));
+.text-\[5e5e5e\] {
+  color: 5e5e5e;
 }
-.text-\[\#8a8a8a\] {
-  --tw-text-opacity: 1;
-  color: rgb(138 138 138 / var(--tw-text-opacity, 1));
+.text-\[8a8a8a\] {
+  color: 8a8a8a;
 }
 .text-accent {
   color: hsl(var(--accent));
@@ -2870,12 +2856,6 @@ video {
 .text-zinc-400 {
   --tw-text-opacity: 1;
   color: rgb(161 161 170 / var(--tw-text-opacity, 1));
-}
-.text-\[5e5e5e\] {
-  color: 5e5e5e;
-}
-.text-\[8a8a8a\] {
-  color: 8a8a8a;
 }
 .underline {
   text-decoration-line: underline;
@@ -4678,20 +4658,12 @@ All colors MUST be HSL.
   fill: hsl(var(--muted-foreground));
 }
 
-.\[\&_\.recharts-cartesian-grid_line\[stroke\=\'\#ccc\'\]\]\:stroke-border\/50 .recharts-cartesian-grid line[stroke='#ccc'] {
-  stroke: hsl(var(--border) / 0.5);
-}
-
 .\[\&_\.recharts-cartesian-grid_line\[stroke\=\'ccc\'\]\]\:stroke-border\/50 .recharts-cartesian-grid line[stroke='ccc'] {
   stroke: hsl(var(--border) / 0.5);
 }
 
 .\[\&_\.recharts-curve\.recharts-tooltip-cursor\]\:stroke-border .recharts-curve.recharts-tooltip-cursor {
   stroke: hsl(var(--border));
-}
-
-.\[\&_\.recharts-dot\[stroke\=\'\#fff\'\]\]\:stroke-transparent .recharts-dot[stroke='#fff'] {
-  stroke: transparent;
 }
 
 .\[\&_\.recharts-dot\[stroke\=\'fff\'\]\]\:stroke-transparent .recharts-dot[stroke='fff'] {
@@ -4701,10 +4673,6 @@ All colors MUST be HSL.
 .\[\&_\.recharts-layer\]\:outline-none .recharts-layer {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.\[\&_\.recharts-polar-grid_\[stroke\=\'\#ccc\'\]\]\:stroke-border .recharts-polar-grid [stroke='#ccc'] {
-  stroke: hsl(var(--border));
 }
 
 .\[\&_\.recharts-polar-grid_\[stroke\=\'ccc\'\]\]\:stroke-border .recharts-polar-grid [stroke='ccc'] {
@@ -4719,16 +4687,8 @@ All colors MUST be HSL.
   fill: hsl(var(--muted));
 }
 
-.\[\&_\.recharts-reference-line_\[stroke\=\'\#ccc\'\]\]\:stroke-border .recharts-reference-line [stroke='#ccc'] {
-  stroke: hsl(var(--border));
-}
-
 .\[\&_\.recharts-reference-line_\[stroke\=\'ccc\'\]\]\:stroke-border .recharts-reference-line [stroke='ccc'] {
   stroke: hsl(var(--border));
-}
-
-.\[\&_\.recharts-sector\[stroke\=\'\#fff\'\]\]\:stroke-transparent .recharts-sector[stroke='#fff'] {
-  stroke: transparent;
 }
 
 .\[\&_\.recharts-sector\[stroke\=\'fff\'\]\]\:stroke-transparent .recharts-sector[stroke='fff'] {

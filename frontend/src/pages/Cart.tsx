@@ -214,7 +214,7 @@ const Cart = () => {
 
               <div className="mt-6 p-4 bg-foreground/5 rounded-lg">
                 <p className="text-sm text-center">
-                  Free shipping on orders over <span className="font-semibold">R3,000</span>. Standard shipping R130.
+                  Free shipping on orders over <span className="font-semibold">R2,000</span>. Standard shipping R130.
                 </p>
               </div>
             </Card>
