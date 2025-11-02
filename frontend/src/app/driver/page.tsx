@@ -176,7 +176,7 @@ export default function DriverPortal() {
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-4">
                         <div>
-                          <h3 className="text-lg font-semibold">Order #{order._id}</h3>
+                          <h3 className="text-lg font-semibold">Order {order._id}</h3>
                           <p className="text-sm text-muted-foreground">
                             {new Date(order.createdAt).toLocaleDateString()}
                           </p>
@@ -278,7 +278,7 @@ export default function DriverPortal() {
                 <Card key={order._id} className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold">Order #{order._id}</h3>
+                      <h3 className="text-lg font-semibold">Order {order._id}</h3>
                       <p className="text-sm text-muted-foreground">
                         Delivered: {order.deliveredAt ? new Date(order.deliveredAt).toLocaleDateString() : 'N/A'}
                       </p>

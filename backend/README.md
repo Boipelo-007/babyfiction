@@ -1,8 +1,8 @@
-# Glide Shop Backend API
+ Glide Shop Backend API
 
 A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB, JWT authentication, and full CRUD operations.
 
-## Features
+ Features
 
 - 🔐 **Authentication & Authorization**
   - JWT-based authentication
@@ -33,7 +33,7 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
   - Order confirmations
   - Order status updates
 
-## Tech Stack
+ Tech Stack
 
 - **Runtime**: Node.js
 - **Framework**: Express.js
@@ -44,7 +44,7 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
 - **Security**: Helmet, CORS, Rate limiting
 - **Language**: TypeScript
 
-## Installation
+ Installation
 
 1. **Clone and navigate to backend directory**
    ```bash
@@ -75,9 +75,9 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
    npm run dev
    ```
 
-## API Endpoints
+ API Endpoints
 
-### Authentication
+ Authentication
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login user
 - `GET /api/auth/me` - Get current user
@@ -87,7 +87,7 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
 - `PUT /api/auth/reset-password` - Reset password
 - `GET /api/auth/verify-email` - Verify email
 
-### Products
+ Products
 - `GET /api/products` - Get all products (with filtering)
 - `GET /api/products/:id` - Get single product
 - `GET /api/products/categories` - Get categories
@@ -97,7 +97,7 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
 - `PUT /api/products/:id` - Update product (Admin)
 - `DELETE /api/products/:id` - Delete product (Admin)
 
-### Orders
+ Orders
 - `POST /api/orders` - Create order
 - `GET /api/orders` - Get user orders
 - `GET /api/orders/:id` - Get single order
@@ -106,7 +106,7 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
 - `GET /api/orders/admin/stats` - Get order statistics (Admin)
 - `PUT /api/orders/:id/status` - Update order status (Admin)
 
-### Cart
+ Cart
 - `GET /api/cart` - Get user cart
 - `POST /api/cart/items` - Add item to cart
 - `PUT /api/cart/items/:itemId` - Update cart item
@@ -114,72 +114,72 @@ A comprehensive Node.js/Express backend for an e-commerce platform with MongoDB,
 - `DELETE /api/cart` - Clear cart
 - `GET /api/cart/count` - Get cart item count
 
-## Database Models
+ Database Models
 
-### User
+ User
 - Personal information (name, email, phone)
 - Authentication (password, tokens)
 - Address information
 - Role and permissions
 - Email verification status
 
-### Product
+ Product
 - Product details (name, description, price)
 - Inventory management (stock tracking)
 - Categories and variants
 - Images and specifications
 - SEO and ratings
 
-### Order
+ Order
 - Order information and status
 - Customer and shipping details
 - Payment information
 - Order items and pricing
 - Tracking and delivery
 
-### Cart
+ Cart
 - User cart with items
 - Quantity and variant selection
 - Automatic expiration
 - Price calculations
 
-### Review
+ Review
 - Product reviews and ratings
 - User verification
 - Helpful votes
 - Admin responses
 
-## Environment Variables
+ Environment Variables
 
 ```env
-# Database
+ Database
 MONGO_URI=mongodb://localhost:27017/glide_shop
 
-# Server
+ Server
 PORT=4000
 NODE_ENV=development
 
-# JWT
+ JWT
 JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRE=7d
 
-# Email
+ Email
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
 
-# Frontend
+ Frontend
 FRONTEND_URL=http://localhost:3000
 ```
 
-## Scripts
+ Scripts
 
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build for production
 - `npm start` - Start production server
 
-## Security Features
+ Security Features
 
 - JWT token authentication
 - Password hashing with bcrypt
@@ -190,7 +190,7 @@ FRONTEND_URL=http://localhost:3000
 - Session management
 - Error handling without sensitive data exposure
 
-## Error Handling
+ Error Handling
 
 The API uses a centralized error handling system that:
 - Catches and formats all errors consistently

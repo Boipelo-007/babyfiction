@@ -1,6 +1,6 @@
-# Modern Email Setup with Resend
+ Modern Email Setup with Resend
 
-## 🚀 Why Resend?
+ 🚀 Why Resend?
 
 **Resend** is a modern email API built for developers:
 - ✅ **Free tier**: 3,000 emails/month, 100 emails/day
@@ -12,16 +12,16 @@
 - ✅ **Professional** - designed for transactional emails
 - ✅ **Simple API** - easier than SMTP
 
-## 📋 Setup Steps
+ 📋 Setup Steps
 
-### Step 1: Sign Up for Resend
+ Step 1: Sign Up for Resend
 
 1. **Go to**: https://resend.com
 2. **Click "Start Building"**
 3. **Sign up** with GitHub or email (free, no credit card)
 4. **Verify your email**
 
-### Step 2: Get API Key
+ Step 2: Get API Key
 
 1. **Go to**: https://resend.com/api-keys
 2. **Click "Create API Key"**
@@ -32,7 +32,7 @@
    ```
 5. **Save it** - you'll only see it once!
 
-### Step 3: Verify Your Domain (Optional but Recommended)
+ Step 3: Verify Your Domain (Optional but Recommended)
 
 **For testing**: Use `onboarding@resend.dev` (works immediately)
 
@@ -44,14 +44,14 @@
 5. Wait for verification (~5 minutes)
 6. Use `noreply@babyfiction.com` as sender
 
-### Step 4: Install Resend Package
+ Step 4: Install Resend Package
 
 ```bash
 cd backend
 npm install resend
 ```
 
-### Step 5: Update Environment Variables in Render
+ Step 5: Update Environment Variables in Render
 
 Go to Render Dashboard → Your Backend Service → Environment:
 
@@ -67,13 +67,13 @@ FRONTEND_URL=https://babyfictions.netlify.app
 EMAIL_FROM_ADDRESS=noreply@babyfiction.com
 ```
 
-### Step 6: Update Email Utility
+ Step 6: Update Email Utility
 
 I'll create a new email utility that uses Resend instead of SMTP.
 
-## 🎯 Comparison
+ 🎯 Comparison
 
-### Gmail SMTP (Current)
+ Gmail SMTP (Current)
 - ❌ Requires App Password
 - ❌ Daily sending limits
 - ❌ Can be marked as spam
@@ -81,7 +81,7 @@ I'll create a new email utility that uses Resend instead of SMTP.
 - ❌ No tracking
 - ❌ Not designed for apps
 
-### Resend (Recommended)
+ Resend (Recommended)
 - ✅ Simple API key
 - ✅ 3,000 emails/month free
 - ✅ Better deliverability
@@ -89,9 +89,9 @@ I'll create a new email utility that uses Resend instead of SMTP.
 - ✅ Built-in tracking
 - ✅ Designed for apps
 
-## 📧 What You Get
+ 📧 What You Get
 
-### Free Tier:
+ Free Tier:
 - **3,000 emails/month**
 - **100 emails/day**
 - **Email tracking**
@@ -99,14 +99,14 @@ I'll create a new email utility that uses Resend instead of SMTP.
 - **React email templates**
 - **Webhooks**
 
-### Paid Plans (if you grow):
+ Paid Plans (if you grow):
 - **$20/month**: 50,000 emails
 - **$80/month**: 100,000 emails
 - Better for scaling
 
-## 🔧 Implementation
+ 🔧 Implementation
 
-### Current (SMTP):
+ Current (SMTP):
 ```javascript
 // Complex SMTP configuration
 EMAIL_HOST=smtp.gmail.com
@@ -115,50 +115,50 @@ EMAIL_USERNAME=your-email@gmail.com
 EMAIL_PASSWORD=16-char-app-password
 ```
 
-### New (Resend):
+ New (Resend):
 ```javascript
 // Simple API key
 RESEND_API_KEY=re_your_api_key
 EMAIL_FROM_ADDRESS=onboarding@resend.dev
 ```
 
-## ✅ Benefits for Your App
+ ✅ Benefits for Your App
 
-### Password Reset Emails:
+ Password Reset Emails:
 - ✅ Delivered instantly
 - ✅ Won't go to spam
 - ✅ Professional appearance
 - ✅ Track if user opened it
 
-### Order Confirmations:
+ Order Confirmations:
 - ✅ Reliable delivery
 - ✅ Track customer engagement
 - ✅ Professional branding
 - ✅ Fast sending
 
-### Newsletter:
+ Newsletter:
 - ✅ Bulk sending support
 - ✅ Unsubscribe handling
 - ✅ Open/click tracking
 - ✅ Better deliverability
 
-## 🚀 Quick Start
+ 🚀 Quick Start
 
-### 1. Sign up: https://resend.com
-### 2. Get API key
-### 3. Add to Render:
+ 1. Sign up: https://resend.com
+ 2. Get API key
+ 3. Add to Render:
 ```
 RESEND_API_KEY=re_your_key_here
 EMAIL_FROM_ADDRESS=onboarding@resend.dev
 EMAIL_FROM_NAME=Babyfiction
 ```
 
-### 4. I'll update the code to use Resend
-### 5. Deploy and test!
+ 4. I'll update the code to use Resend
+ 5. Deploy and test!
 
-## 📊 Monitoring
+ 📊 Monitoring
 
-### Resend Dashboard:
+ Resend Dashboard:
 - See all sent emails
 - Track delivery status
 - View open rates
@@ -166,7 +166,7 @@ EMAIL_FROM_NAME=Babyfiction
 - Monitor bounces
 - Debug issues
 
-### Example Dashboard:
+ Example Dashboard:
 ```
 Today's Activity:
 ├─ Sent: 45 emails
@@ -176,9 +176,9 @@ Today's Activity:
 └─ Bounced: 1 (2.2%)
 ```
 
-## 🎨 Advanced Features
+ 🎨 Advanced Features
 
-### React Email Templates:
+ React Email Templates:
 ```jsx
 import { Button, Html } from '@react-email/components';
 
@@ -192,7 +192,7 @@ export default function PasswordReset({ resetUrl }) {
 }
 ```
 
-### Email Tracking:
+ Email Tracking:
 ```javascript
 // Automatically tracks:
 - Email sent
@@ -201,7 +201,7 @@ export default function PasswordReset({ resetUrl }) {
 - Links clicked
 ```
 
-### Webhooks:
+ Webhooks:
 ```javascript
 // Get notified when:
 - Email bounces
@@ -209,38 +209,38 @@ export default function PasswordReset({ resetUrl }) {
 - Email marked as spam
 ```
 
-## 💰 Cost Comparison
+ 💰 Cost Comparison
 
-### Gmail (Free but Limited):
+ Gmail (Free but Limited):
 - Free forever
 - But: Daily limits, spam issues, not professional
 
-### Resend Free Tier:
+ Resend Free Tier:
 - 3,000 emails/month
 - 100 emails/day
 - Professional delivery
 - Perfect for starting out
 
-### When to Upgrade:
+ When to Upgrade:
 - **> 3,000 emails/month**: $20/month
 - **> 50,000 emails/month**: $80/month
 - Still cheaper than SendGrid/Mailgun
 
-## 🔐 Security
+ 🔐 Security
 
-### API Key:
+ API Key:
 - Store in environment variables
 - Never commit to git
 - Rotate regularly
 - Use different keys for dev/prod
 
-### Domain Verification:
+ Domain Verification:
 - Proves you own the domain
 - Prevents spoofing
 - Increases deliverability
 - Required for custom domains
 
-## 📝 Next Steps
+ 📝 Next Steps
 
 1. **Sign up** for Resend (5 minutes)
 2. **Get API key**
@@ -250,7 +250,7 @@ export default function PasswordReset({ resetUrl }) {
 6. **Verify** emails are delivered
 7. **Monitor** in Resend dashboard
 
-## 🎯 Recommendation
+ 🎯 Recommendation
 
 **Use Resend!** It's:
 - ✅ Easier than Gmail

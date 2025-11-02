@@ -36,21 +36,21 @@ const Footer = () => {
             </p>
             <div className="flex gap-4 pt-4">
               <a
-                href="#"
+                href=""
                 className="hover:text-foreground transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href=""
                 className="hover:text-foreground transition-colors duration-300"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href=""
                 className="hover:text-foreground transition-colors duration-300"
                 aria-label="Facebook"
               >

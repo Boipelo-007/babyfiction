@@ -1,8 +1,8 @@
-# Password Validation & Wishlist Improvements
+ Password Validation & Wishlist Improvements
 
-## ✅ Implemented Features
+ ✅ Implemented Features
 
-### 1. Password Requirements Display
+ 1. Password Requirements Display
 
 **Location**: `/auth/signup` page
 
@@ -11,7 +11,7 @@
 - ✓ One uppercase letter (A-Z)
 - ✓ One lowercase letter (a-z)
 - ✓ One number (0-9)
-- ✓ One special character (!@#$%^&*(),.?":{}|<>)
+- ✓ One special character (!@$%^&*(),.?":{}|<>)
 
 **Features**:
 - Real-time validation as user types
@@ -32,7 +32,7 @@ When typing password:
 ○ One special character         → ✓ One special character
 ```
 
-### 2. Wishlist Count Persistence
+ 2. Wishlist Count Persistence
 
 **Status**: Already implemented ✅
 
@@ -57,22 +57,22 @@ setWishlistCount(wishRes?.count || 0);
 window.addEventListener('bf_wishlist_updated', syncCounts);
 ```
 
-## Password Validation Logic
+ Password Validation Logic
 
-### Frontend Validation:
+ Frontend Validation:
 ```typescript
 const passwordRequirements = {
   minLength: password.length >= 8,
   hasUpperCase: /[A-Z]/.test(password),
   hasLowerCase: /[a-z]/.test(password),
   hasNumber: /[0-9]/.test(password),
-  hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+  hasSpecialChar: /[!@$%^&*(),.?":{}|<>]/.test(password),
 };
 
 const isPasswordValid = Object.values(passwordRequirements).every(Boolean);
 ```
 
-### Backend Validation:
+ Backend Validation:
 Backend also validates password requirements in the User model:
 ```javascript
 // backend/src/models/User.js
@@ -83,9 +83,9 @@ password: {
 }
 ```
 
-## Testing
+ Testing
 
-### Test Password Validation:
+ Test Password Validation:
 
 1. **Go to signup page**: `/auth/signup`
 2. **Click password field**: Requirements appear
@@ -96,7 +96,7 @@ password: {
 5. **Try to submit weak password**: Error message appears
 6. **Submit strong password**: Form submits successfully
 
-### Test Wishlist Count:
+ Test Wishlist Count:
 
 1. **Login** to your account
 2. **Add items** to wishlist from catalog
@@ -105,97 +105,97 @@ password: {
 5. **Remove items**: Count updates automatically
 6. **Logout and login**: Count restored from database
 
-## Security Benefits
+ Security Benefits
 
-### Password Strength:
+ Password Strength:
 - ✅ Prevents weak passwords
 - ✅ Enforces complexity requirements
 - ✅ Reduces account compromise risk
 - ✅ Meets industry standards
 - ✅ User-friendly feedback
 
-### Wishlist Persistence:
+ Wishlist Persistence:
 - ✅ Data stored in database
 - ✅ Survives page refreshes
 - ✅ Syncs across devices
 - ✅ Protected by authentication
 - ✅ Accurate count display
 
-## Files Modified
+ Files Modified
 
-### Frontend:
+ Frontend:
 - `frontend/src/app/auth/signup/page.tsx` - Added password validation UI
 
-### Backend:
+ Backend:
 - `backend/src/routes/wishlist.js` - Already has count endpoint
 - `backend/src/controllers/wishlistController.js` - Already has getWishlistCount
 
-## Example Passwords
+ Example Passwords
 
-### ❌ Weak (Won't Work):
+ ❌ Weak (Won't Work):
 - `password` - No uppercase, number, or special char
 - `Password` - No number or special char
 - `Pass123` - No special char, too short
 - `test` - Too short, missing requirements
 
-### ✅ Strong (Will Work):
+ ✅ Strong (Will Work):
 - `Test123!` - All requirements met
 - `MyP@ssw0rd` - All requirements met
-- `Secure#2024` - All requirements met
+- `Secure2024` - All requirements met
 - `Welcome@123` - All requirements met
 
-## User Feedback
+ User Feedback
 
-### Visual Indicators:
+ Visual Indicators:
 - **○ Gray circle** = Requirement not met
 - **✓ Green checkmark** = Requirement met
 - **Red error** = Form submission blocked
 - **Green success** = Password accepted
 
-### Error Messages:
+ Error Messages:
 - "Password does not meet requirements" - When submitting invalid password
 - "Passwords do not match" - When confirm doesn't match
 
-## Best Practices
+ Best Practices
 
-### Password Requirements:
+ Password Requirements:
 - ✅ Clear visual feedback
 - ✅ Real-time validation
 - ✅ No surprises on submit
 - ✅ Helpful error messages
 - ✅ Accessible design
 
-### Wishlist Count:
+ Wishlist Count:
 - ✅ Accurate at all times
 - ✅ Updates immediately
 - ✅ Persists in database
 - ✅ Syncs on auth changes
 - ✅ Handles edge cases
 
-## Accessibility
+ Accessibility
 
-### Password Field:
+ Password Field:
 - Keyboard navigable
 - Screen reader friendly
 - Clear labels
 - Visual and text feedback
 - Toggle password visibility
 
-### Wishlist Badge:
+ Wishlist Badge:
 - Visible count indicator
 - Updates announced (future: ARIA live region)
 - Color contrast compliant
 - Icon with text alternative
 
-## Future Enhancements
+ Future Enhancements
 
-### Password:
+ Password:
 - [ ] Password strength meter
 - [ ] Suggest strong passwords
 - [ ] Check against common passwords
 - [ ] Password history (prevent reuse)
 
-### Wishlist:
+ Wishlist:
 - [ ] Wishlist sharing
 - [ ] Price drop alerts
 - [ ] Back in stock notifications

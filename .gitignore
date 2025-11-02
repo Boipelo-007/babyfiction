@@ -1,36 +1,36 @@
-# Dependencies
+ Dependencies
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment variables
+ Environment variables
 .env
 .env.local
 .env.development
 .env.test
 .env.production
 
-# Operating System
+ Operating System
 .DS_Store
 Thumbs.db
 
-# IDE
+ IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Build output
+ Build output
 dist/
 build/
 *.log
 
-# Testing
+ Testing
 coverage/
 
-# Temporary files
+ Temporary files
 *.tmp
 temp/
 tmp/

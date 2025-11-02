@@ -1,10 +1,10 @@
-# How to Verify Email Functionality
+ How to Verify Email Functionality
 
-## 🔍 Development Mode (Current Setup)
+ 🔍 Development Mode (Current Setup)
 
 Since SMTP is not configured, emails are **logged to the backend console** instead of being sent.
 
-### How to See Emails:
+ How to See Emails:
 
 1. **Check your backend terminal** where you ran `npm run dev`
 2. **Look for email output** that looks like this:
@@ -32,11 +32,11 @@ HTML Content:
 ================================================================================
 ```
 
-### Test Email Features:
+ Test Email Features:
 
-#### 1. **Password Reset Email**
+ 1. **Password Reset Email**
 ```bash
-# Trigger: Request password reset
+ Trigger: Request password reset
 1. Go to http://localhost:3000/auth/forgot-password
 2. Enter email: admin@example.com
 3. Click "Send Reset Link"
@@ -45,29 +45,29 @@ HTML Content:
 6. Use it to reset password
 ```
 
-#### 2. **Order Confirmation Email**
+ 2. **Order Confirmation Email**
 ```bash
-# Trigger: Place an order
+ Trigger: Place an order
 1. Login as customer
 2. Add items to cart
 3. Complete checkout
 4. Check backend console for order confirmation email
 ```
 
-#### 3. **Newsletter Welcome Email**
+ 3. **Newsletter Welcome Email**
 ```bash
-# Trigger: Subscribe to newsletter
+ Trigger: Subscribe to newsletter
 1. Go to footer
 2. Enter email in newsletter form
 3. Click Subscribe
 4. Check backend console for welcome email
 ```
 
-## 📧 Production Mode (Real Emails)
+ 📧 Production Mode (Real Emails)
 
 To send actual emails, configure SMTP in your `.env` file:
 
-### Option 1: Gmail (Recommended for Testing)
+ Option 1: Gmail (Recommended for Testing)
 
 1. **Enable 2-Factor Authentication** on your Gmail account
 2. **Generate App Password**:
@@ -91,7 +91,7 @@ cd backend
 npm run dev
 ```
 
-### Option 2: SendGrid (Recommended for Production)
+ Option 2: SendGrid (Recommended for Production)
 
 1. **Sign up**: https://sendgrid.com
 2. **Create API Key**
@@ -105,7 +105,7 @@ EMAIL_FROM_ADDRESS=noreply@yourdomain.com
 EMAIL_FROM_NAME=Babyfiction
 ```
 
-### Option 3: Mailtrap (Recommended for Testing)
+ Option 3: Mailtrap (Recommended for Testing)
 
 1. **Sign up**: https://mailtrap.io
 2. **Get credentials** from inbox settings
@@ -119,9 +119,9 @@ EMAIL_FROM_ADDRESS=noreply@babyfiction.com
 EMAIL_FROM_NAME=Babyfiction
 ```
 
-## 🧪 Testing Email Links
+ 🧪 Testing Email Links
 
-### Password Reset Flow:
+ Password Reset Flow:
 
 1. **Request reset**:
    - Go to `/auth/forgot-password`
@@ -145,7 +145,7 @@ EMAIL_FROM_NAME=Babyfiction
    - Submit form
    - Should successfully reset password
 
-### Quick Test Script:
+ Quick Test Script:
 
 Create `backend/test-email.js`:
 ```javascript
@@ -166,9 +166,9 @@ Run it:
 node backend/test-email.js
 ```
 
-## 📋 Email Features in Your App
+ 📋 Email Features in Your App
 
-### Currently Implemented:
+ Currently Implemented:
 
 1. **Password Reset** ✅
    - Trigger: `/auth/forgot-password`
@@ -185,7 +185,7 @@ node backend/test-email.js
    - Contains: Welcome message, WELCOME10 code
    - Template: Professional HTML + plain text
 
-### Email Templates:
+ Email Templates:
 
 All emails include:
 - Professional HTML design
@@ -195,9 +195,9 @@ All emails include:
 - Clear CTAs
 - Unsubscribe links (where applicable)
 
-## 🔧 Troubleshooting
+ 🔧 Troubleshooting
 
-### Email not showing in console?
+ Email not showing in console?
 
 1. **Check backend is running**:
    ```bash
@@ -214,7 +214,7 @@ All emails include:
    - Verify email service is being called
    - Check `backend/src/utils/email.js`
 
-### Email links not working?
+ Email links not working?
 
 1. **Check FRONTEND_URL** in `.env`:
    ```env
@@ -227,27 +227,27 @@ All emails include:
 
 4. **Try generating new token**
 
-### Gmail not working?
+ Gmail not working?
 
 1. **Enable 2FA** first
 2. **Use App Password**, not regular password
 3. **Allow less secure apps** (if needed)
 4. **Check spam folder**
 
-## 📊 Email Monitoring
+ 📊 Email Monitoring
 
-### Development:
+ Development:
 - All emails logged to console
 - No actual emails sent
 - Perfect for testing
 
-### Production:
+ Production:
 - Use email service (SendGrid, Mailgun, etc.)
 - Monitor delivery rates
 - Track opens/clicks
 - Handle bounces
 
-## 🎯 Next Steps
+ 🎯 Next Steps
 
 1. **Test in development**: Check console logs
 2. **Configure SMTP**: For real email testing

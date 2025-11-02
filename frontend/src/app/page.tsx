@@ -69,7 +69,7 @@ export default function HomePage() {
             <input
               type="text"
               placeholder="Search"
-              className="w-full h-full bg-[#d9d9d9] border-none rounded-[2px] px-5 pr-[50px] font-[family-name:var(--font-accent)] text-xs text-black/66 tracking-[2px] uppercase placeholder:text-black/66 outline-none"
+              className="w-full h-full bg-[d9d9d9] border-none rounded-[2px] px-5 pr-[50px] font-[family-name:var(--font-accent)] text-xs text-black/66 tracking-[2px] uppercase placeholder:text-black/66 outline-none"
             />
             <div className="absolute right-[15px] top-1/2 -translate-y-1/2 text-black/66">
               <Search className="w-5 h-5" />
@@ -93,14 +93,14 @@ export default function HomePage() {
 
           {/* Product Gallery */}
           <div className="absolute top-[257px] right-[50px] flex gap-5">
-            <div className="w-[366px] h-[376px] border border-[#d7d7d7] overflow-hidden">
+            <div className="w-[366px] h-[376px] border border-[d7d7d7] overflow-hidden">
               <img
                 src={heroImages[currentImageIndex]}
                 alt="Product"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-[366px] h-[376px] border border-[#d7d7d7] overflow-hidden">
+            <div className="w-[366px] h-[376px] border border-[d7d7d7] overflow-hidden">
               <img
                 src={heroImages[(currentImageIndex + 1) % heroImages.length]}
                 alt="Product"
@@ -128,7 +128,7 @@ export default function HomePage() {
           {/* Shop Button */}
           <Link
             href="/catalog"
-            className="absolute bottom-[40px] left-[50px] bg-[#d9d9d9] w-[265px] h-10 flex items-center justify-between px-5 font-[family-name:var(--font-nav)] text-base text-black hover:opacity-80 transition-opacity"
+            className="absolute bottom-[40px] left-[50px] bg-[d9d9d9] w-[265px] h-10 flex items-center justify-between px-5 font-[family-name:var(--font-nav)] text-base text-black hover:opacity-80 transition-opacity"
           >
             <span>Go To Shop</span>
             <div className="w-[47.5px] h-3 flex items-center justify-center rotate-180 scale-y-[-1]">
@@ -205,7 +205,7 @@ export default function HomePage() {
                 href={`/product/${product.id}`}
                 className="group relative"
               >
-                <div className="border border-[#d7d7d7] h-[376px] overflow-hidden mb-4">
+                <div className="border border-[d7d7d7] h-[376px] overflow-hidden mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -243,19 +243,19 @@ export default function HomePage() {
           {/* More Button */}
           <div className="flex flex-col items-center gap-4 mb-8">
             <div className="flex flex-col items-center">
-              <p className="font-[family-name:var(--font-body)] text-base text-[#8a8a8a] mb-2">
+              <p className="font-[family-name:var(--font-body)] text-base text-[8a8a8a] mb-2">
                 More
               </p>
-              <ChevronDown className="w-4 h-4 text-[#8a8a8a]" />
+              <ChevronDown className="w-4 h-4 text-[8a8a8a]" />
             </div>
-            <div className="w-[244px] h-px bg-[#8a8a8a]" />
+            <div className="w-[244px] h-px bg-[8a8a8a]" />
           </div>
 
           {/* See More Link */}
           <div className="text-right">
             <Link
               href="/catalog"
-              className="font-[family-name:var(--font-body)] text-sm text-[#5e5e5e] underline hover:opacity-70"
+              className="font-[family-name:var(--font-body)] text-sm text-[5e5e5e] underline hover:opacity-70"
             >
               See More
             </Link>
@@ -274,7 +274,7 @@ export default function HomePage() {
           {/* Approach Gallery - Staggered Layout */}
           <div className="max-w-[1340px] mx-auto grid grid-cols-4 gap-5">
             {/* Item 1 */}
-            <div className="border border-[#d7d7d7] h-[389px] overflow-hidden">
+            <div className="border border-[d7d7d7] h-[389px] overflow-hidden">
               <img
                 src="/assets/images/gallery/FashionDesign1.jpg"
                 alt="Fashion Design 1"
@@ -283,7 +283,7 @@ export default function HomePage() {
             </div>
 
             {/* Item 2 - offset top */}
-            <div className="border border-[#d7d7d7] h-[419px] mt-[73px] overflow-hidden">
+            <div className="border border-[d7d7d7] h-[419px] mt-[73px] overflow-hidden">
               <img
                 src="/assets/images/gallery/FashionDesign3.jpg"
                 alt="Fashion Design 2"
@@ -292,7 +292,7 @@ export default function HomePage() {
             </div>
 
             {/* Item 3 - starts lower */}
-            <div className="border border-[#d7d7d7] h-[419px] overflow-hidden">
+            <div className="border border-[d7d7d7] h-[419px] overflow-hidden">
               <img
                 src="/assets/images/gallery/FashionDesign2.jpg"
                 alt="Fashion Design 3"
@@ -301,7 +301,7 @@ export default function HomePage() {
             </div>
 
             {/* Item 4 - offset down more */}
-            <div className="border border-[#d7d7d7] h-[389px] mt-[103px] overflow-hidden">
+            <div className="border border-[d7d7d7] h-[389px] mt-[103px] overflow-hidden">
               <img
                 src="/assets/images/gallery/FashionDesign4.jpg"
                 alt="Fashion Design 4"

@@ -69,7 +69,7 @@ function AdminOrdersInner() {
             <tbody>
               {orders.map((o: any) => (
                 <tr key={o._id} className="border-b">
-                  <td className="py-2 pr-4">#{o._id}</td>
+                  <td className="py-2 pr-4">{o._id}</td>
                   <td className="py-2 pr-4">{o?.user?.email || `${o?.user?.firstName || ''} ${o?.user?.lastName || ''}`}</td>
                   <td className="py-2 pr-4">{o.status}</td>
                   <td className="py-2 pr-4">{o?.pricing?.total}</td>

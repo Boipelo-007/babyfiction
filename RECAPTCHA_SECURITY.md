@@ -1,36 +1,36 @@
-# Google reCAPTCHA & Security Implementation - Complete ✅
+ Google reCAPTCHA & Security Implementation - Complete ✅
 
-## Features Implemented
+ Features Implemented
 
-### 1. **Google reCAPTCHA v3** 🛡️
+ 1. **Google reCAPTCHA v3** 🛡️
 
-#### What is reCAPTCHA v3?
+ What is reCAPTCHA v3?
 - Invisible protection (no checkboxes or challenges)
 - Returns a score (0.0 to 1.0) indicating likelihood of being a bot
 - Higher scores = more likely to be human
 - Works in the background without interrupting user experience
 
-#### Protected Endpoints:
+ Protected Endpoints:
 - Login (`/api/auth/login`)
 - Registration (`/api/auth/register`)
 - Password Reset (`/api/auth/forgot-password`)
 
-### 2. **Rate Limiting** ⏱️
+ 2. **Rate Limiting** ⏱️
 
-#### Automatic Protection:
+ Automatic Protection:
 - **5 failed login attempts** → 15-minute lockout
 - Tracks attempts per email address
 - Automatic cleanup of old attempts
 - Clears on successful login
 
-#### Benefits:
+ Benefits:
 - Prevents brute force attacks
 - Protects against credential stuffing
 - Reduces server load from attacks
 
-### 3. **Backend Middleware** 🔧
+ 3. **Backend Middleware** 🔧
 
-#### reCAPTCHA Verification:
+ reCAPTCHA Verification:
 ```javascript
 // Verifies token with Google
 // Checks action matches
@@ -38,7 +38,7 @@
 // Skips in development if not configured
 ```
 
-#### Rate Limiting:
+ Rate Limiting:
 ```javascript
 // Tracks failed attempts in memory
 // 15-minute sliding window
@@ -46,9 +46,9 @@
 // Automatic cleanup
 ```
 
-## Setup Instructions
+ Setup Instructions
 
-### Step 1: Get reCAPTCHA Keys
+ Step 1: Get reCAPTCHA Keys
 
 1. **Go to**: https://www.google.com/recaptcha/admin
 2. **Register a new site**:
@@ -61,11 +61,11 @@
    - Site Key (for frontend)
    - Secret Key (for backend)
 
-### Step 2: Configure Backend
+ Step 2: Configure Backend
 
 Add to `backend/.env`:
 ```env
-# Google reCAPTCHA
+ Google reCAPTCHA
 RECAPTCHA_SECRET_KEY=your-secret-key-here
 RECAPTCHA_MIN_SCORE=0.5
 ```
@@ -77,14 +77,14 @@ RECAPTCHA_MIN_SCORE=0.5
 - `0.3-0.5` = Suspicious
 - `0.0-0.3` = Very likely bot
 
-### Step 3: Configure Frontend
+ Step 3: Configure Frontend
 
 Add to `frontend/.env.local`:
 ```env
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your-site-key-here
 ```
 
-### Step 4: Add reCAPTCHA Script
+ Step 4: Add reCAPTCHA Script
 
 In `frontend/src/app/layout.tsx` or `_document.tsx`:
 ```tsx
@@ -94,9 +94,9 @@ In `frontend/src/app/layout.tsx` or `_document.tsx`:
 />
 ```
 
-## Frontend Integration
+ Frontend Integration
 
-### Login Form Example:
+ Login Form Example:
 ```tsx
 import { useEffect } from 'react';
 
@@ -132,15 +132,15 @@ const LoginForm = () => {
 };
 ```
 
-### Actions to Use:
+ Actions to Use:
 - `login` - For login form
 - `register` - For signup form
 - `forgot_password` - For password reset
 - `checkout` - For checkout process
 
-## Backend Usage
+ Backend Usage
 
-### Apply Middleware to Routes:
+ Apply Middleware to Routes:
 ```javascript
 import { recaptchaMiddleware } from '../middleware/recaptcha.js';
 
@@ -157,7 +157,7 @@ router.post('/register',
 );
 ```
 
-### Manual Verification:
+ Manual Verification:
 ```javascript
 import { verifyRecaptcha } from '../middleware/recaptcha.js';
 
@@ -165,37 +165,37 @@ const result = await verifyRecaptcha(token, 'login');
 // result.success, result.score, result.action
 ```
 
-## Development Mode
+ Development Mode
 
-### Without reCAPTCHA Keys:
+ Without reCAPTCHA Keys:
 - Middleware automatically skips verification
 - Logs warning to console
 - Allows development without Google account
 - Rate limiting still works
 
-### Console Output:
+ Console Output:
 ```
 ⚠️  reCAPTCHA not configured - skipping verification in development
 ```
 
-## Production Deployment
+ Production Deployment
 
-### Checklist:
+ Checklist:
 - ✅ Add reCAPTCHA keys to environment variables
 - ✅ Add production domain to reCAPTCHA console
 - ✅ Set appropriate score threshold (0.5 recommended)
 - ✅ Test with real traffic
 - ✅ Monitor reCAPTCHA admin console for stats
 
-### Monitoring:
+ Monitoring:
 - Check Google reCAPTCHA admin dashboard
 - Review score distributions
 - Adjust threshold if needed
 - Monitor blocked requests
 
-## Rate Limiting Details
+ Rate Limiting Details
 
-### How It Works:
+ How It Works:
 ```
 1. User attempts login with wrong password
 2. Failed attempt recorded with timestamp
@@ -205,45 +205,45 @@ const result = await verifyRecaptcha(token, 'login');
 6. User can try again
 ```
 
-### Storage:
+ Storage:
 - In-memory Map (resets on server restart)
 - Automatic cleanup every hour
 - 15-minute sliding window
 - Per-email tracking
 
-### Future Enhancement:
+ Future Enhancement:
 - Redis for distributed rate limiting
 - IP-based tracking
 - Configurable thresholds
 - Admin dashboard for blocked IPs
 
-## Security Benefits
+ Security Benefits
 
-### Prevents:
+ Prevents:
 - ✅ Brute force attacks
 - ✅ Credential stuffing
 - ✅ Automated bot attacks
 - ✅ Account enumeration
 - ✅ DDoS attempts on auth endpoints
 
-### User Experience:
+ User Experience:
 - ✅ Invisible protection (no CAPTCHAs to solve)
 - ✅ No friction for legitimate users
 - ✅ Fast verification (< 100ms)
 - ✅ Works on mobile and desktop
 
-## Files Created
+ Files Created
 
-### Backend:
+ Backend:
 - `backend/src/middleware/recaptcha.js` - reCAPTCHA verification & rate limiting
 
-### Modified:
+ Modified:
 - `backend/src/controllers/authController.js` - Added rate limiting to login
 - `backend/.env.example` - Added reCAPTCHA configuration
 
-## Testing
+ Testing
 
-### Test Rate Limiting:
+ Test Rate Limiting:
 1. **Attempt login** with wrong password 5 times
 2. **6th attempt** should return:
    ```json
@@ -254,7 +254,7 @@ const result = await verifyRecaptcha(token, 'login');
 3. **Wait 15 minutes** or restart server
 4. **Try again** - should work
 
-### Test reCAPTCHA (Production):
+ Test reCAPTCHA (Production):
 1. **Configure keys** in environment
 2. **Add reCAPTCHA script** to frontend
 3. **Generate token** on form submit
@@ -262,67 +262,67 @@ const result = await verifyRecaptcha(token, 'login');
 5. **Backend verifies** automatically
 6. **Low score** = rejected with 403
 
-## Error Messages
+ Error Messages
 
-### Rate Limited:
+ Rate Limited:
 ```
 Status: 429
 Message: "Too many failed login attempts. Please try again in 15 minutes."
 ```
 
-### Invalid reCAPTCHA:
+ Invalid reCAPTCHA:
 ```
 Status: 400
 Message: "reCAPTCHA verification failed"
 ```
 
-### Low Score:
+ Low Score:
 ```
 Status: 403
 Message: "reCAPTCHA verification failed - suspicious activity detected"
 ```
 
-### Missing Token:
+ Missing Token:
 ```
 Status: 400
 Message: "reCAPTCHA token is required"
 ```
 
-## Environment Variables
+ Environment Variables
 
-### Backend (.env):
+ Backend (.env):
 ```env
-# Required for production
+ Required for production
 RECAPTCHA_SECRET_KEY=your-secret-key
 
-# Optional (defaults)
+ Optional (defaults)
 RECAPTCHA_MIN_SCORE=0.5
 NODE_ENV=production
 ```
 
-### Frontend (.env.local):
+ Frontend (.env.local):
 ```env
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your-site-key
 ```
 
-## Best Practices
+ Best Practices
 
-### Score Thresholds:
+ Score Thresholds:
 - **0.3** - Very strict (may block some humans)
 - **0.5** - Recommended (good balance)
 - **0.7** - Lenient (fewer false positives)
 
-### Actions:
+ Actions:
 - Use specific action names
 - Match action on frontend and backend
 - Use lowercase with underscores
 
-### Rate Limiting:
+ Rate Limiting:
 - 5 attempts is reasonable
 - 15-minute window is standard
 - Consider IP-based limiting for extra security
 
-## Next Steps
+ Next Steps
 
 reCAPTCHA backend is complete! To finish:
 

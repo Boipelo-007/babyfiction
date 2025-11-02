@@ -51,7 +51,7 @@ function OrdersInner() {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <div className="text-sm text-muted-foreground">Order</div>
-                  <div className="font-medium">#{o._id}</div>
+                  <div className="font-medium">{o._id}</div>
                   <div className="text-sm text-muted-foreground">Status: {o.status}</div>
                   <div className="text-sm text-muted-foreground">Total: {o?.pricing?.total?.toFixed ? o.pricing.total.toFixed(2) : o?.pricing?.total}</div>
                 </div>

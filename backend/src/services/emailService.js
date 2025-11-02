@@ -14,12 +14,12 @@ export const sendPasswordResetEmail = async (to, resetToken, userName) => {
       <html>
         <head>
           <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: 333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #000; color: #fff; padding: 20px; text-align: center; }
-            .content { background: #f9f9f9; padding: 30px; border-radius: 8px; margin-top: 20px; }
-            .button { display: inline-block; background: #000; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
-            .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
+            .header { background: 000; color: fff; padding: 20px; text-align: center; }
+            .content { background: f9f9f9; padding: 30px; border-radius: 8px; margin-top: 20px; }
+            .button { display: inline-block; background: 000; color: fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+            .footer { text-align: center; margin-top: 30px; color: 666; font-size: 12px; }
           </style>
         </head>
         <body>
@@ -35,7 +35,7 @@ export const sendPasswordResetEmail = async (to, resetToken, userName) => {
                 <a href="${resetUrl}" class="button">Reset Password</a>
               </p>
               <p>Or copy and paste this link into your browser:</p>
-              <p style="word-break: break-all; color: #666;">${resetUrl}</p>
+              <p style="word-break: break-all; color: 666;">${resetUrl}</p>
               <p><strong>This link will expire in 1 hour.</strong></p>
               <p>If you didn't request a password reset, you can safely ignore this email.</p>
             </div>
@@ -86,9 +86,9 @@ export const sendOrderConfirmationEmail = async (to, order, userName) => {
     const price = typeof product === 'object' ? product.price : item.price;
     return `
       <tr>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${name}</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">R${(price * item.quantity).toFixed(2)}</td>
+        <td style="padding: 10px; border-bottom: 1px solid eee;">${name}</td>
+        <td style="padding: 10px; border-bottom: 1px solid eee; text-align: center;">${item.quantity}</td>
+        <td style="padding: 10px; border-bottom: 1px solid eee; text-align: right;">R${(price * item.quantity).toFixed(2)}</td>
       </tr>
     `;
   }).join('');
@@ -100,23 +100,23 @@ export const sendOrderConfirmationEmail = async (to, order, userName) => {
 
   const emailOptions = {
     to,
-    subject: `Order Confirmation #${order._id} - Babyfiction`,
+    subject: `Order Confirmation ${order._id} - Babyfiction`,
     html: `
       <!DOCTYPE html>
       <html>
         <head>
           <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: 333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #000; color: #fff; padding: 20px; text-align: center; }
-            .content { background: #f9f9f9; padding: 30px; border-radius: 8px; margin-top: 20px; }
+            .header { background: 000; color: fff; padding: 20px; text-align: center; }
+            .content { background: f9f9f9; padding: 30px; border-radius: 8px; margin-top: 20px; }
             .order-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-            .order-table th { background: #f0f0f0; padding: 10px; text-align: left; }
+            .order-table th { background: f0f0f0; padding: 10px; text-align: left; }
             .totals { margin-top: 20px; }
             .totals-row { display: flex; justify-content: space-between; padding: 8px 0; }
-            .totals-row.total { font-weight: bold; font-size: 18px; border-top: 2px solid #333; padding-top: 12px; margin-top: 12px; }
-            .button { display: inline-block; background: #000; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
-            .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
+            .totals-row.total { font-weight: bold; font-size: 18px; border-top: 2px solid 333; padding-top: 12px; margin-top: 12px; }
+            .button { display: inline-block; background: 000; color: fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+            .footer { text-align: center; margin-top: 30px; color: 666; font-size: 12px; }
           </style>
         </head>
         <body>
@@ -129,7 +129,7 @@ export const sendOrderConfirmationEmail = async (to, order, userName) => {
               <p>Hi ${userName || 'there'},</p>
               <p>Thank you for your order! We've received your order and will process it shortly.</p>
               
-              <p><strong>Order Number:</strong> #${order._id}</p>
+              <p><strong>Order Number:</strong> ${order._id}</p>
               <p><strong>Order Date:</strong> ${new Date(order.createdAt).toLocaleDateString()}</p>
               
               <h3>Order Items</h3>
@@ -192,7 +192,7 @@ export const sendOrderConfirmationEmail = async (to, order, userName) => {
       
       Thank you for your order! We've received your order and will process it shortly.
       
-      Order Number: #${order._id}
+      Order Number: ${order._id}
       Order Date: ${new Date(order.createdAt).toLocaleDateString()}
       
       Order Items:

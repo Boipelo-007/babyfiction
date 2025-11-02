@@ -78,7 +78,7 @@ function AdminOrderDetailInner() {
   return (
     <div className="mx-auto max-w-4xl p-6">
       <div className="mb-4 text-sm"><Link href="/admin/orders" className="underline">← Back to Orders</Link></div>
-      <h1 className="text-2xl font-semibold">Order #{order._id}</h1>
+      <h1 className="text-2xl font-semibold">Order {order._id}</h1>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <div className="rounded border p-4">
           <div className="font-medium mb-2">Summary</div>

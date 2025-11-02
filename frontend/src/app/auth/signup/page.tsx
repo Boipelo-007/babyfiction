@@ -27,7 +27,7 @@ function SignupInner() {
     hasUpperCase: /[A-Z]/.test(password),
     hasLowerCase: /[a-z]/.test(password),
     hasNumber: /[0-9]/.test(password),
-    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    hasSpecialChar: /[!@$%^&*(),.?":{}|<>]/.test(password),
   };
 
   const isPasswordValid = Object.values(passwordRequirements).every(Boolean);
@@ -146,7 +146,7 @@ function SignupInner() {
                     <span>{passwordRequirements.hasNumber ? '✓' : '○'}</span> One number
                   </p>
                   <p className={`flex items-center gap-1 ${passwordRequirements.hasSpecialChar ? 'text-green-400' : 'text-zinc-400'}`}>
-                    <span>{passwordRequirements.hasSpecialChar ? '✓' : '○'}</span> One special character (!@#$%^&*)
+                    <span>{passwordRequirements.hasSpecialChar ? '✓' : '○'}</span> One special character (!@$%^&*)
                   </p>
                 </div>
               )}

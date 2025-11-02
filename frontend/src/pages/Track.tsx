@@ -73,7 +73,7 @@ const Track = () => {
               <Label htmlFor="orderNumber">Order Number</Label>
               <Input
                 id="orderNumber"
-                placeholder="e.g., #ORD-123456"
+                placeholder="e.g., ORD-123456"
                 value={orderNumber}
                 onChange={(e) => setOrderNumber(e.target.value)}
                 required
@@ -93,7 +93,7 @@ const Track = () => {
             <Card className="p-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">Order #{orderNumber || "ORD-123456"}</h2>
+                  <h2 className="text-2xl font-bold mb-2">Order {orderNumber || "ORD-123456"}</h2>
                   <p className="text-muted-foreground">Estimated delivery: Jan 19, 2024</p>
                 </div>
                 <div className="text-right">

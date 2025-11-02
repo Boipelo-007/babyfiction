@@ -242,13 +242,13 @@ const sendWelcomeEmail = async (subscriber) => {
     <html>
     <head>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: 333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #000; color: #fff; padding: 30px; text-align: center; }
-        .content { padding: 30px; background: #f9f9f9; }
-        .button { display: inline-block; padding: 12px 30px; background: #000; color: #fff; text-decoration: none; border-radius: 5px; margin: 20px 0; }
-        .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
-        .footer a { color: #666; text-decoration: underline; }
+        .header { background: 000; color: fff; padding: 30px; text-align: center; }
+        .content { padding: 30px; background: f9f9f9; }
+        .button { display: inline-block; padding: 12px 30px; background: 000; color: fff; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+        .footer { padding: 20px; text-align: center; font-size: 12px; color: 666; }
+        .footer a { color: 666; text-decoration: underline; }
       </style>
     </head>
     <body>
@@ -268,9 +268,9 @@ const sendWelcomeEmail = async (subscriber) => {
           </ul>
           <p>As a welcome gift, use code <strong>WELCOME10</strong> for 10% off your first order!</p>
           <a href="${process.env.FRONTEND_URL}/catalog" class="button">Start Shopping</a>
-          <p style="margin-top: 30px; font-size: 14px; color: #666;">
+          <p style="margin-top: 30px; font-size: 14px; color: 666;">
             Want to customize what emails you receive? 
-            <a href="${preferencesUrl}" style="color: #000;">Update your preferences</a>
+            <a href="${preferencesUrl}" style="color: 000;">Update your preferences</a>
           </p>
         </div>
         <div class="footer">

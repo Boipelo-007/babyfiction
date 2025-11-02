@@ -38,11 +38,11 @@ async function testEmail() {
         <html>
           <head>
             <style>
-              body { font-family: Arial, sans-serif; padding: 40px; background: #f5f5f5; }
+              body { font-family: Arial, sans-serif; padding: 40px; background: f5f5f5; }
               .container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; }
-              h1 { color: #000; }
-              .success { background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin: 20px 0; }
-              .info { background: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 5px; margin: 20px 0; }
+              h1 { color: 000; }
+              .success { background: d4edda; color: 155724; padding: 15px; border-radius: 5px; margin: 20px 0; }
+              .info { background: d1ecf1; color: 0c5460; padding: 15px; border-radius: 5px; margin: 20px 0; }
             </style>
           </head>
           <body>
@@ -69,7 +69,7 @@ async function testEmail() {
                 <li>For production, verify your own domain</li>
               </ol>
               
-              <p style="color: #666; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+              <p style="color: 666; margin-top: 40px; padding-top: 20px; border-top: 1px solid eee;">
                 © ${new Date().getFullYear()} Babyfiction. All rights reserved.
               </p>
             </div>

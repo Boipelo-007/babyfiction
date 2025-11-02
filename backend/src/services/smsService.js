@@ -157,7 +157,7 @@ export const sendSMS = async (to, message) => {
  * Send order confirmation SMS
  */
 export const sendOrderConfirmationSMS = async (phone, orderId, total) => {
-  const message = `Babyfiction: Order #${orderId} confirmed! Total: R${total.toFixed(2)}. We'll notify you when it ships. Thank you!`;
+  const message = `Babyfiction: Order ${orderId} confirmed! Total: R${total.toFixed(2)}. We'll notify you when it ships. Thank you!`;
   
   try {
     await sendSMS(phone, message);
@@ -173,14 +173,14 @@ export const sendOrderConfirmationSMS = async (phone, orderId, total) => {
  */
 export const sendOrderStatusSMS = async (phone, orderId, status) => {
   const statusMessages = {
-    processing: `Babyfiction: Your order #${orderId} is being processed. We'll update you soon!`,
-    shipped: `Babyfiction: Great news! Your order #${orderId} has been shipped and is on its way to you.`,
-    delivered: `Babyfiction: Your order #${orderId} has been delivered. Enjoy your purchase!`,
-    cancelled: `Babyfiction: Your order #${orderId} has been cancelled. Contact us if you have questions.`,
+    processing: `Babyfiction: Your order ${orderId} is being processed. We'll update you soon!`,
+    shipped: `Babyfiction: Great news! Your order ${orderId} has been shipped and is on its way to you.`,
+    delivered: `Babyfiction: Your order ${orderId} has been delivered. Enjoy your purchase!`,
+    cancelled: `Babyfiction: Your order ${orderId} has been cancelled. Contact us if you have questions.`,
   };
 
   const message = statusMessages[status.toLowerCase()] || 
-    `Babyfiction: Your order #${orderId} status: ${status}`;
+    `Babyfiction: Your order ${orderId} status: ${status}`;
 
   try {
     await sendSMS(phone, message);
@@ -196,8 +196,8 @@ export const sendOrderStatusSMS = async (phone, orderId, status) => {
  */
 export const sendOrderShippedSMS = async (phone, orderId, trackingNumber) => {
   const message = trackingNumber
-    ? `Babyfiction: Order #${orderId} shipped! Tracking: ${trackingNumber}. Track at babyfiction.com/orders/${orderId}`
-    : `Babyfiction: Order #${orderId} has been shipped! Track at babyfiction.com/orders/${orderId}`;
+    ? `Babyfiction: Order ${orderId} shipped! Tracking: ${trackingNumber}. Track at babyfiction.com/orders/${orderId}`
+    : `Babyfiction: Order ${orderId} has been shipped! Track at babyfiction.com/orders/${orderId}`;
 
   try {
     await sendSMS(phone, message);
@@ -211,7 +211,7 @@ export const sendOrderShippedSMS = async (phone, orderId, trackingNumber) => {
  * Send delivery confirmation SMS
  */
 export const sendDeliveryConfirmationSMS = async (phone, orderId) => {
-  const message = `Babyfiction: Your order #${orderId} has been delivered! We hope you love it. Rate your experience at babyfiction.com`;
+  const message = `Babyfiction: Your order ${orderId} has been delivered! We hope you love it. Rate your experience at babyfiction.com`;
 
   try {
     await sendSMS(phone, message);
