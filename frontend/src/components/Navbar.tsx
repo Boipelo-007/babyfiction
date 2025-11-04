@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ShoppingCart, Search, User, Menu, X, Heart } from "lucide-react";
+import { ShoppingCart, Search, User, Menu, X, Heart, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCurrentUser } from "@/lib/auth";
@@ -30,6 +30,38 @@ const Navbar = () => {
       window.location.reload();
     }
   };
+
+  // Define navigation links (with paths) to fix parsing error and missing variable
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Shop All", path: "/catalog" },
+    {
+      name: "NEW & BEST",
+      path: "/catalog",
+      sublinks: [
+        { name: "All New Arrivals", path: "/catalog?category=new-arrivals" },
+        { name: "Spring | Summer", path: "/catalog?category=spring-summer" },
+        { name: "Piano People", path: "/catalog?category=piano-people" },
+        { name: "New T-Shirts", path: "/catalog?category=new-t-shirts" },
+        { name: "Best Sellers", path: "/catalog?category=best-sellers" },
+        { name: "TOP PICKS", path: "/catalog?category=top-picks" },
+        { name: "T-Shirts", path: "/catalog?category=t-shirts" },
+        { name: "Sunglasses", path: "/catalog?category=sunglasses" },
+        { name: "Hats", path: "/catalog?category=hats" },
+        { name: "Bags", path: "/catalog?category=bags" },
+        { name: "Last of the large", path: "/catalog?category=last-of-large" },
+        { name: "All Products", path: "/catalog" },
+      ],
+    },
+    {
+      name: "PROMOS",
+      path: "/catalog",
+      sublinks: [
+        { name: "Rocking The Daisies", path: "/catalog?promo=rocking-the-daisies" },
+        { name: "Piano People", path: "/catalog?promo=piano-people" },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,15 +94,6 @@ const Navbar = () => {
     window.addEventListener('bf_wishlist_updated', onWishlistUpdated as EventListener);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Shop All", path: "/catalog" },
-    { name: "Hats", path: "/catalog?category=hats" },
-    { name: "Shirts", path: "/catalog?category=shirts" },
-    { name: "Hoodies", path: "/catalog?category=hoodies" },
-    { name: "Pants", path: "/catalog?category=pants" },
-  ];
 
   return (
     <nav
@@ -215,18 +238,39 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg animate-slide-in">
           <div className="flex flex-col p-6 gap-4">
-            {navLinks.filter((link) => {
-              const base = link.path.split("?")[0];
-              return !pathname.startsWith(base);
-            }).map((link) => (
-              <Link
-                key={`${link.path}-${link.name}`}
-                href={link.path}
-                onClick={() => setMobileOpen(false)}
-                className="text-lg font-medium hover:text-foreground transition-colors duration-300"
-              >
-                {link.name}
-              </Link>
+            {navLinks.map((link) => (
+              <div key={link.name}>
+                {link.sublinks ? (
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg font-medium text-foreground/80">
+                        {link.name}
+                      </span>
+                      <ChevronDown className="h-5 w-5" />
+                    </div>
+                    <div className="pl-4 mt-2 flex flex-col gap-2">
+                      {link.sublinks.map((sublink) => (
+                        <Link
+                          key={sublink.name}
+                          href={sublink.path}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-base font-medium text-foreground/60 hover:text-foreground transition-colors duration-300"
+                        >
+                          {sublink.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    href={link.path || '#'}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-lg font-medium hover:text-foreground transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                )}
+              </div>
             ))}
 
             <div className="mt-2 border-t pt-4 flex flex-col gap-3">

@@ -1,10 +1,10 @@
 "use client";
-import { Suspense } from "react";
 import Admin from "@/pages/Admin";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="p-6 text-sm text-muted-foreground">Loading…</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <Admin />
     </Suspense>
   );
