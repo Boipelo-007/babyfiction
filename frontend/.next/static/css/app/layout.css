@@ -2350,6 +2350,10 @@ video {
 .bg-yellow-500\/10 {
   background-color: rgb(234 179 8 / 0.1);
 }
+.bg-\[\#d9d9d9\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity, 1));
+}
 .bg-\[url\(\'\/assets\/images\/banners\/background-image\.jpg\'\)\] {
   background-image: url('/assets/images/banners/background-image.jpg');
 }

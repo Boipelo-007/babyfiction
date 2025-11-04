@@ -57,10 +57,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Grain Texture Background */}
-      <div className="fixed inset-0 pointer-events-none z-[-1] opacity-20 mix-blend-luminosity">
-        <div className="absolute inset-0 bg-[url('/assets/images/banners/background-image.jpg')] bg-repeat opacity-20" />
-      </div>
+    
 
       <main className="relative bg-white">
         {/* Search Bar */}
@@ -69,7 +66,7 @@ export default function HomePage() {
             <input
               type="text"
               placeholder="Search"
-              className="w-full h-full bg-[d9d9d9] border-none rounded-[2px] px-5 pr-[50px] font-[family-name:var(--font-accent)] text-xs text-black/66 tracking-[2px] uppercase placeholder:text-black/66 outline-none"
+              className="w-full h-full bg-[#d9d9d9] border-none rounded-[2px] px-5 pr-[50px] font-[family-name:var(--font-accent)] text-xs text-black/66 tracking-[2px] uppercase placeholder:text-black/66 outline-none"
             />
             <div className="absolute right-[15px] top-1/2 -translate-y-1/2 text-black/66">
               <Search className="w-5 h-5" />
@@ -128,7 +125,7 @@ export default function HomePage() {
           {/* Shop Button */}
           <Link
             href="/catalog"
-            className="absolute bottom-[40px] left-[50px] bg-[d9d9d9] w-[265px] h-10 flex items-center justify-between px-5 font-[family-name:var(--font-nav)] text-base text-black hover:opacity-80 transition-opacity"
+            className="absolute bottom-[40px] left-[50px] bg-[#d9d9d9] w-[265px] h-10 flex items-center justify-between px-5 font-[family-name:var(--font-nav)] text-base text-black hover:opacity-80 transition-opacity"
           >
             <span>Go To Shop</span>
             <div className="w-[47.5px] h-3 flex items-center justify-center rotate-180 scale-y-[-1]">
