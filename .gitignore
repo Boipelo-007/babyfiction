@@ -10,6 +10,7 @@ yarn-error.log*
 .env.development
 .env.test
 .env.production
+.next
 
  Operating System
 .DS_Store
