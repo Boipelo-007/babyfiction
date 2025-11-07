@@ -11,6 +11,7 @@ yarn-error.log*
 .env.test
 .env.production
 .next
+frontend\.next
 
  Operating System
 .DS_Store
