@@ -113,9 +113,21 @@ const Navbar = () => {
     >
       <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2">
-          <span className="text-2xl font-bold tracking-tight text-black dark:text-white">
-            BABY FICTIONS
+        <Link href="/" className="group flex items-center gap-2 overflow-hidden">
+          <span className="text-2xl font-bold tracking-tight text-black dark:text-white inline-flex">
+            <span className="inline-block transition-all duration-500 group-hover:translate-y-[-100%] group-hover:opacity-0">B</span>
+            <span className="inline-block transition-all duration-500 delay-[50ms] group-hover:translate-y-[-100%] group-hover:opacity-0">A</span>
+            <span className="inline-block transition-all duration-500 delay-[100ms] group-hover:translate-y-[-100%] group-hover:opacity-0">B</span>
+            <span className="inline-block transition-all duration-500 delay-[150ms] group-hover:translate-y-[-100%] group-hover:opacity-0">Y</span>
+            <span className="inline-block transition-all duration-500 delay-[200ms] group-hover:translate-y-[-100%] group-hover:opacity-0">&nbsp;</span>
+            <span className="inline-block transition-all duration-500 delay-[250ms] group-hover:translate-y-[-100%] group-hover:opacity-0">F</span>
+            <span className="inline-block transition-all duration-500 delay-[300ms] group-hover:translate-y-[-100%] group-hover:opacity-0">I</span>
+            <span className="inline-block transition-all duration-500 delay-[350ms] group-hover:translate-y-[-100%] group-hover:opacity-0">C</span>
+            <span className="inline-block transition-all duration-500 delay-[400ms] group-hover:translate-y-[-100%] group-hover:opacity-0">T</span>
+            <span className="inline-block transition-all duration-500 delay-[450ms] group-hover:translate-y-[-100%] group-hover:opacity-0">I</span>
+            <span className="inline-block transition-all duration-500 delay-[500ms] group-hover:translate-y-[-100%] group-hover:opacity-0">O</span>
+            <span className="inline-block transition-all duration-500 delay-[550ms] group-hover:translate-y-[-100%] group-hover:opacity-0">N</span>
+            <span className="inline-block transition-all duration-500 delay-[600ms] group-hover:translate-y-[-100%] group-hover:opacity-0">S</span>
           </span>
         </Link>
 
@@ -158,8 +170,8 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-4">
+        {/* Right side actions */}
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
