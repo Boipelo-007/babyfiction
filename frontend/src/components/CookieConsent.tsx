@@ -50,7 +50,7 @@ export function CookieConsent() {
         <Button 
           onClick={() => setShow(false)}
           variant="outline"
-          className="flex-1 border-2 border-gray-700 dark:border-gray-300 text-white dark:text-black hover:bg-gray-900 dark:hover:bg-gray-100 font-semibold py-2.5 rounded-lg transition-colors"
+          className="flex-1 border-2 border-gray-600 dark:border-gray-400 text-gray-300 dark:text-gray-700 hover:text-white dark:hover:text-black hover:bg-gray-800 dark:hover:bg-gray-200 font-semibold py-2.5 rounded-lg transition-colors"
         >
           Decline
         </Button>

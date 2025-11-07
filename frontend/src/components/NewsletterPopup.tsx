@@ -82,13 +82,13 @@ export function NewsletterPopup() {
           {/* Left side - Image */}
           <div className="relative h-64 md:h-auto">
             <img
-              src="/images/newsletter-promo.jpg"
-              alt="Subscribe"
+              src="/BlackFriday.webp"
+              alt="Black Friday Sale"
               className="w-full h-full object-cover"
               onError={(e) => {
                 // Fallback gradient if image doesn't load
                 e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement!.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                e.currentTarget.parentElement!.style.background = 'linear-gradient(135deg, #000000 0%, #434343 100%)';
               }}
             />
           </div>
