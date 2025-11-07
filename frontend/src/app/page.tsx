@@ -138,43 +138,95 @@ export default function HomePage() {
         <section className="mt-[100px] px-[50px]">
           <div className="max-w-[1340px] mx-auto grid grid-cols-4 gap-5">
             {/* Caps - small */}
-            <div className="relative h-[230px] overflow-hidden cursor-pointer group">
+            <Link
+              href="/catalog?category=Caps"
+              className="relative h-[230px] overflow-hidden cursor-pointer group rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]"
+              data-category="Caps"
+            >
               <img
                 src="/assets/images/banners/caps.jpg"
                 alt="Caps"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(255,87,34,0.8)] via-[rgba(255,152,0,0.5)] to-[rgba(255,87,34,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="text-center text-white transform translate-y-5 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="font-[family-name:var(--font-logo)] text-[32px] font-normal uppercase tracking-[2px] mb-2.5">
+                    Caps
+                  </h3>
+                  <span className="font-[family-name:var(--font-nav)] text-sm font-light uppercase tracking-wider opacity-90">
+                    Load More
+                  </span>
+                </div>
+              </div>
+            </Link>
 
             {/* T-Shirts - tall */}
-            <div className="relative row-span-2 h-[616px] overflow-hidden cursor-pointer group">
+            <Link
+              href="/catalog?category=T-Shirts"
+              className="relative row-span-2 h-[616px] overflow-hidden cursor-pointer group rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]"
+              data-category="T-Shirts"
+            >
               <img
                 src="/assets/images/banners/tshirts.jpg"
                 alt="T-Shirts"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(63,81,181,0.8)] via-[rgba(33,150,243,0.5)] to-[rgba(63,81,181,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="text-center text-white transform translate-y-5 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="font-[family-name:var(--font-logo)] text-[32px] font-normal uppercase tracking-[2px] mb-2.5">
+                    Graphic T's
+                  </h3>
+                  <span className="font-[family-name:var(--font-nav)] text-sm font-light uppercase tracking-wider opacity-90">
+                    Load More
+                  </span>
+                </div>
+              </div>
+            </Link>
 
             {/* Hoodies - wide and tall */}
-            <div className="relative col-span-2 row-span-2 h-[616px] overflow-hidden cursor-pointer group">
+            <Link
+              href="/catalog?category=hoodies"
+              className="relative col-span-2 row-span-2 h-[616px] overflow-hidden cursor-pointer group rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)]"
+              data-category="hoodies"
+            >
               <img
                 src="/assets/images/banners/hoodies.jpg"
                 alt="Hoodies"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(76,175,80,0.8)] via-[rgba(139,195,74,0.5)] to-[rgba(76,175,80,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="text-center text-white transform translate-y-5 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="font-[family-name:var(--font-logo)] text-[32px] font-normal uppercase tracking-[2px] mb-2.5">
+                    Hoodies
+                  </h3>
+                  <span className="font-[family-name:var(--font-nav)] text-sm font-light uppercase tracking-wider opacity-90">
+                    Load More
+                  </span>
+                </div>
+              </div>
+            </Link>
 
-            {/* Accessories - medium */}
-            <div className="relative h-[372px] overflow-hidden cursor-pointer group">
+            {/* Accessories - disabled (Coming Soon) */}
+            <div
+              className="relative h-[200px] col-span-4 overflow-hidden cursor-not-allowed rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.1)] opacity-70"
+              data-category="accessories"
+              onClick={(e) => e.preventDefault()}
+            >
               <img
                 src="/assets/images/banners/accessories.jpg"
                 alt="Accessories"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+              <div className="absolute inset-0  opacity-100 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <h3 className="font-[family-name:var(--font-logo)] text-[32px] font-normal uppercase tracking-[2px] mb-2.5">
+                    Accessories
+                  </h3>
+                  <span className="font-[family-name:var(--font-accent)] text-base text-[#ffeb3b] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] animate-pulse">
+                    Coming Soon!
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -238,7 +290,7 @@ export default function HomePage() {
           </div>
 
           {/* More Button */}
-          <div className="flex flex-col items-center gap-4 mb-8">
+          <Link href="/catalog" className="flex flex-col items-center gap-4 mb-8 cursor-pointer hover:opacity-70 transition-opacity">
             <div className="flex flex-col items-center">
               <p className="font-[family-name:var(--font-body)] text-base text-[8a8a8a] mb-2">
                 More
@@ -246,17 +298,7 @@ export default function HomePage() {
               <ChevronDown className="w-4 h-4 text-[8a8a8a]" />
             </div>
             <div className="w-[244px] h-px bg-[8a8a8a]" />
-          </div>
-
-          {/* See More Link */}
-          <div className="text-right">
-            <Link
-              href="/catalog"
-              className="font-[family-name:var(--font-body)] text-sm text-[5e5e5e] underline hover:opacity-70"
-            >
-              See More
-            </Link>
-          </div>
+          </Link>
         </section>
 
         {/* Fashion Approach Section */}
