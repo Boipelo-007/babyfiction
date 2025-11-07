@@ -8,6 +8,7 @@ import {
   forgotPassword,
   resetPassword,
   verifyEmail,
+  deleteMe,
   validateRegister,
   validateLogin,
   validateChangePassword,
@@ -31,5 +32,6 @@ router.get('/verify-email', verifyEmail);
 router.get('/me', authenticate, getMe);
 router.put('/profile', authenticate, updateProfile);
 router.put('/change-password', authenticate, validate(validateChangePassword), changePassword);
+router.delete('/me', authenticate, deleteMe);
 
 export default router;

@@ -72,3 +72,52 @@ export const getSummary = async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to fetch analytics summary', error: err.message });
   }
 };
+
+// Get user-specific analytics
+export const getMySummary = async (req, res) => {
+  try {
+    const days = Math.min(parseInt(req.query.days || '30', 10) || 30, 90);
+    const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+    const userId = req.user._id;
+
+    const [pageViews, orders, reviews, wishlist] = await Promise.all([
+      // User's page views
+      AnalyticsEvent.aggregate([
+        { $match: { userId: userId, type: 'page_view', createdAt: { $gte: since } } },
+        { $group: { _id: '$route', count: { $sum: 1 } } },
+        { $sort: { count: -1 } },
+        { $limit: 10 },
+      ]),
+      // User's orders
+      AnalyticsEvent.aggregate([
+        { $match: { userId: userId, type: 'purchase', createdAt: { $gte: since } } },
+        { $group: { _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } }, orders: { $sum: 1 }, revenue: { $sum: { $ifNull: ['$amount', 0] } } } },
+        { $sort: { _id: 1 } },
+      ]),
+      // User's reviews
+      AnalyticsEvent.aggregate([
+        { $match: { userId: userId, type: 'review_submitted', createdAt: { $gte: since } } },
+        { $group: { _id: '$productId', reviews: { $sum: 1 }, avgRating: { $avg: '$rating' } } },
+        { $sort: { reviews: -1 } },
+        { $limit: 10 },
+      ]),
+      // User's wishlist interactions
+      AnalyticsEvent.aggregate([
+        { $match: { userId: userId, type: { $in: ['add_to_wishlist', 'remove_from_wishlist'] }, createdAt: { $gte: since } } },
+        { $group: { _id: '$type', count: { $sum: 1 } } },
+      ])
+    ]);
+
+    const wishlistObj = wishlist.reduce((acc, cur) => ({ ...acc, [cur._id]: cur.count }), {});
+
+    res.json({
+      since,
+      pageViews,
+      orders,
+      reviews,
+      wishlist: wishlistObj,
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Failed to fetch user analytics summary', error: err.message });
+  }
+};

@@ -282,6 +282,33 @@ export const resetPassword = async (req, res, next) => {
   }
 };
 
+// @desc    Delete own account
+// @route   DELETE /api/auth/me
+// @access  Private
+export const deleteMe = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    
+    if (!user) {
+      return next(createError('User not found', 404));
+    }
+
+    // Prevent admin self-deletion
+    if (user.role === 'admin') {
+      return next(createError('Admin accounts cannot be deleted', 403));
+    }
+
+    await User.findByIdAndDelete(req.user._id);
+
+    res.json({
+      success: true,
+      message: 'Account deleted successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Verify email
 // @route   GET /api/auth/verify-email
 // @access  Public

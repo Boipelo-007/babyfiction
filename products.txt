@@ -1,0 +1,8 @@
+There is a lack of products
+No user dashboard
+Customer's in the admin page were not represented properly
+Wrong data validation it should have some otp and also check if the email exists or not and give valid errors
+in the admin dashboard it should show If a person is active or not
+If a person deleted their account it doesn't show
+Moving from wishlist to cart
+The analytics in the admin page were not it

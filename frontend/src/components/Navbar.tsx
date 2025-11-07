@@ -15,6 +15,7 @@ const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const { user } = useCurrentUser();
@@ -31,7 +32,6 @@ const Navbar = () => {
     }
   };
 
-  // Define navigation links (with paths) to fix parsing error and missing variable
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Shop All", path: "/catalog" },
@@ -68,6 +68,7 @@ const Navbar = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
+    
     const syncCounts = async () => {
       try {
         const token = getAuthToken();
@@ -87,163 +88,187 @@ const Navbar = () => {
         setWishlistCount(0);
       }
     };
+    
     syncCounts();
+    
     const onCartUpdated = () => syncCounts();
     const onWishlistUpdated = () => syncCounts();
     window.addEventListener('bf_cart_updated', onCartUpdated as EventListener);
     window.addEventListener('bf_wishlist_updated', onWishlistUpdated as EventListener);
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('bf_cart_updated', onCartUpdated as EventListener);
+      window.removeEventListener('bf_wishlist_updated', onWishlistUpdated as EventListener);
+    };
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-md"
-          : "bg-transparent"
+    <div
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-white dark:bg-black shadow-sm border-b border-gray-200 dark:border-gray-800" 
+          : "bg-white dark:bg-black"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="text-2xl font-bold tracking-tighter hover:scale-105 transition-transform duration-300"
-          >
-            Babyfiction
-          </Link>
+      <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="group flex items-center gap-2">
+          <span className="text-2xl font-bold tracking-tight text-black dark:text-white">
+            BABY FICTIONS
+          </span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 transition-all duration-300">
-            {navLinks.filter((link) => {
-              const base = link.path.split("?")[0];
-              return !pathname.startsWith(base);
-            }).map((link) => (
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <div
+              key={`${link.path}-${link.name}`}
+              className="relative group"
+              onMouseEnter={() => link.sublinks && setActiveDropdown(link.name)}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
               <Link
-                key={`${link.path}-${link.name}`}
                 href={link.path}
-                className={`text-sm font-medium transition-all duration-300 hover:text-foreground relative group ${
-                  pathname.startsWith(link.path.split("?")[0]) ? "text-foreground" : "text-foreground/80"
+                className={`px-4 py-2 text-sm font-semibold uppercase tracking-wide transition-colors duration-200 relative flex items-center gap-1.5 rounded ${
+                  pathname.startsWith(link.path.split("?")[0]) 
+                    ? "text-white bg-black dark:text-black dark:bg-white" 
+                    : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 }`}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
+                {link.sublinks && <ChevronDown className="h-3.5 w-3.5" />}
               </Link>
-            ))}
-          </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setSearchOpen(!searchOpen)}
-              className="hover:bg-foreground/5 transition-all duration-300"
-            >
-              <Search className="h-5 w-5" />
-            </Button>
-
-            {/* Auth / User display */}
-            {!user ? (
-              <>
-                <Link href="/auth/login" className="hidden md:inline text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                  Login
-                </Link>
-                <Link href="/auth/signup" className="hidden md:inline text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                  Sign up
-                </Link>
-              </>
-            ) : (
-              <div className="hidden md:flex items-center gap-3 text-sm font-medium text-foreground/80">
-                <User className="h-4 w-4" />
-                <span>Hello, {user.name || user.email}</span>
-                <button onClick={handleLogout} className="underline hover:text-foreground">Logout</button>
-              </div>
-            )}
-            {user?.role === 'admin' && (
-              <Link href="/admin" className="hidden md:inline text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Admin
-              </Link>
-            )}
-            {user?.role === 'driver' && (
-              <Link href="/driver" className="hidden md:inline text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-                Driver Portal
-              </Link>
-            )}
-
-            {/* Wishlist */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative hover:bg-foreground/5 transition-all duration-300"
-              asChild
-            >
-              <Link href="/wishlist" title="Wishlist">
-                <Heart className="h-5 w-5" />
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 min-w-5 px-1 flex items-center justify-center font-medium animate-scale-in">
-                    {wishlistCount}
-                  </span>
-                )}
-              </Link>
-            </Button>
-
-            <Link href="/cart">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative hover:bg-foreground/5 transition-all duration-300"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 min-w-5 px-1 flex items-center justify-center font-medium animate-scale-in">
-                    {cartCount}
-                  </span>
-                )}
-              </Button>
-            </Link>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
-            >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
+              
+              {/* Dropdown */}
+              {link.sublinks && activeDropdown === link.name && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-black shadow-lg rounded border border-gray-200 dark:border-gray-800 py-2 z-50">
+                  {link.sublinks.map((sublink) => (
+                    <Link
+                      key={sublink.path}
+                      href={sublink.path}
+                      className="block px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                    >
+                      {sublink.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Search Bar */}
-        {searchOpen && (
-          <div className="pb-4 animate-fade-in">
-            <Input
-              placeholder="Search products..."
-              className="w-full bg-secondary/50 border-border focus-visible:ring-primary"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  const q = (searchText || '').trim();
-                  if (q) router.push(`/catalog?query=${encodeURIComponent(q)}`);
-                  setSearchOpen(false);
-                }
-              }}
-            />
-          </div>
-        )}
+        {/* Actions */}
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setSearchOpen(!searchOpen)}
+            className="hover:bg-gray-100 dark:hover:bg-gray-900"
+          >
+            <Search className="h-5 w-5" />
+          </Button>
+
+          {/* Auth / User display */}
+          {!user ? (
+            <>
+              <Link href="/auth/login" className="hidden md:inline text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
+                Login
+              </Link>
+              <Link href="/auth/signup" className="hidden md:inline text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
+                Sign up
+              </Link>
+            </>
+          ) : (
+            <div className="hidden md:flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+              <User className="h-4 w-4" />
+              <span>Hello, {user.name || user.email}</span>
+              <button onClick={handleLogout} className="underline hover:text-black dark:hover:text-white">Logout</button>
+            </div>
+          )}
+          {user?.role === 'admin' && (
+            <Link href="/admin" className="hidden md:inline text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
+              Admin
+            </Link>
+          )}
+          {user?.role === 'driver' && (
+            <Link href="/driver" className="hidden md:inline text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
+              Driver Portal
+            </Link>
+          )}
+
+          {/* Wishlist */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative hover:bg-gray-100 dark:hover:bg-gray-900"
+            asChild
+          >
+            <Link href="/wishlist" title="Wishlist">
+              <Heart className="h-5 w-5" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-black dark:bg-white text-white dark:text-black text-xs rounded-full h-5 min-w-5 px-1 flex items-center justify-center font-bold">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+          </Button>
+
+          <Link href="/cart">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative hover:bg-gray-100 dark:hover:bg-gray-900"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-black dark:bg-white text-white dark:text-black text-xs rounded-full h-5 min-w-5 px-1 flex items-center justify-center font-bold">
+                  {cartCount}
+                </span>
+              )}
+            </Button>
+          </Link>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
       </div>
+
+      {/* Search Bar */}
+      {searchOpen && (
+        <div className="px-6 pb-4">
+          <Input
+            placeholder="Search products..."
+            className="w-full"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                const q = (searchText || '').trim();
+                if (q) router.push(`/catalog?query=${encodeURIComponent(q)}`);
+                setSearchOpen(false);
+              }
+            }}
+          />
+        </div>
+      )}
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg animate-slide-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 shadow-lg">
           <div className="flex flex-col p-6 gap-4">
             {navLinks.map((link) => (
               <div key={link.name}>
                 {link.sublinks ? (
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-medium text-foreground/80">
+                      <span className="text-lg font-medium text-gray-900 dark:text-gray-100">
                         {link.name}
                       </span>
                       <ChevronDown className="h-5 w-5" />
@@ -254,7 +279,7 @@ const Navbar = () => {
                           key={sublink.name}
                           href={sublink.path}
                           onClick={() => setMobileOpen(false)}
-                          className="text-base font-medium text-foreground/60 hover:text-foreground transition-colors duration-300"
+                          className="text-base font-medium text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                         >
                           {sublink.name}
                         </Link>
@@ -265,7 +290,7 @@ const Navbar = () => {
                   <Link
                     href={link.path || '#'}
                     onClick={() => setMobileOpen(false)}
-                    className="text-lg font-medium hover:text-foreground transition-colors duration-300"
+                    className="text-lg font-medium text-gray-900 dark:text-gray-100 hover:text-black dark:hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -273,29 +298,29 @@ const Navbar = () => {
               </div>
             ))}
 
-            <div className="mt-2 border-t pt-4 flex flex-col gap-3">
+            <div className="mt-2 border-t border-gray-200 dark:border-gray-800 pt-4 flex flex-col gap-3">
               {!user ? (
                 <>
-                  <Link href="/auth/login" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-foreground/80 hover:text-foreground">
+                  <Link href="/auth/login" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
                     Login
                   </Link>
-                  <Link href="/auth/signup" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-foreground/80 hover:text-foreground">
+                  <Link href="/auth/signup" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
                     Sign up
                   </Link>
                 </>
               ) : (
-                <div className="flex items-center justify-between text-lg font-medium text-foreground/80">
+                <div className="flex items-center justify-between text-lg font-medium text-gray-700 dark:text-gray-300">
                   <span>Hello, {user.name || user.email}</span>
-                  <button onClick={() => { handleLogout(); setMobileOpen(false); }} className="ml-4 underline hover:text-foreground">Logout</button>
+                  <button onClick={() => { handleLogout(); setMobileOpen(false); }} className="ml-4 underline hover:text-black dark:hover:text-white">Logout</button>
                 </div>
               )}
               {user?.role === 'admin' && (
-                <Link href="/admin" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-foreground/80 hover:text-foreground">
+                <Link href="/admin" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
                   Admin
                 </Link>
               )}
               {user?.role === 'driver' && (
-                <Link href="/driver" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-foreground/80 hover:text-foreground">
+                <Link href="/driver" onClick={() => setMobileOpen(false)} className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">
                   Driver Portal
                 </Link>
               )}
@@ -303,7 +328,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    </nav>
+    </div>
   );
 };
 

@@ -20,6 +20,8 @@ import orderRoutes from './routes/orders.js';
 import cartRoutes from './routes/cart.js';
 import wishlistRoutes from './routes/wishlist.js';
 import usersRoutes from './routes/users.js';
+import adminRoutes from './routes/admin.js';
+import chatbotRoutes from './routes/chatbot.js';
 
 const app = express();
 app.set('trust proxy', 1);
@@ -115,6 +117,8 @@ app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/chatbot', chatbotRoutes);
 
 // Error handling middleware
 app.use(notFound);

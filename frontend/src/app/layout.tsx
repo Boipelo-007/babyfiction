@@ -2,6 +2,9 @@ import '@/index.css';
 import Providers from './providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { CookieConsent } from '@/components/CookieConsent';
+import { NewsletterPopup } from '@/components/NewsletterPopup';
+import { ChatbotWidget } from '@/components/ChatbotWidget';
 import AnalyticsClient from './analytics-client';
 import { Suspense } from 'react';
 
@@ -22,6 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navbar />
             <main className="flex-1 pt-20">{children}</main>
             <Footer />
+            <CookieConsent />
+            <NewsletterPopup />
+            <ChatbotWidget />
           </div>
         </Providers>
       </body>
