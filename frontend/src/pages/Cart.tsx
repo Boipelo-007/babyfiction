@@ -80,6 +80,39 @@ const Cart = () => {
     }
   };
 
+  const moveToWishlist = async (id: string) => {
+    const token = getAuthToken();
+    if (!token) return;
+    
+    const item = cartItems.find((x) => x._id === id);
+    if (!item) return;
+
+    try {
+      // Add to wishlist
+      await fetchJson('/api/wishlist/items', {
+        method: 'POST',
+        body: JSON.stringify({ product: item.productId })
+      });
+
+      // Remove from cart
+      await fetchJson(`/api/cart/items/${id}`, { method: 'DELETE' });
+
+      // Update both cart and wishlist
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('bf_cart_updated'));
+        window.dispatchEvent(new Event('bf_wishlist_updated'));
+      }
+
+      // Reload cart to reflect changes
+      await loadCart();
+      
+      alert('Item moved to wishlist!');
+    } catch (err) {
+      console.error('Failed to move to wishlist:', err);
+      alert('Failed to move item to wishlist. Please try again.');
+    }
+  };
+
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price || 0) * (item.quantity || 0), 0);
   const shipping = 80;
   const total = subtotal + shipping;
@@ -163,14 +196,14 @@ const Cart = () => {
                 </button>
 
                 <div className="flex gap-4">
-                  {/* Product Image */}
-                  <div className="w-32 h-40 sm:w-40 sm:h-48 bg-gray-100 overflow-hidden flex-shrink-0">
+                  {/* Product Image - Clickable */}
+                  <Link href={`/product/${item.productId}`} className="w-32 h-40 sm:w-40 sm:h-48 bg-gray-100 overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
                     <img
                       src={item.image || '/assets/images/products/placeholder.jpg'}
                       alt={item.name}
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </Link>
 
                   {/* Product Details */}
                   <div className="flex-1 flex flex-col justify-between py-2">
@@ -178,9 +211,11 @@ const Cart = () => {
                       <p className="font-[family-name:var(--font-nav)] text-xs text-gray-500 mb-1">
                         {item.category}
                       </p>
-                      <h3 className="font-[family-name:var(--font-nav)] text-sm font-medium mb-2 capitalize">
-                        {item.name}
-                      </h3>
+                      <Link href={`/product/${item.productId}`} className="block hover:text-gray-600 transition-colors">
+                        <h3 className="font-[family-name:var(--font-nav)] text-sm font-medium mb-2 capitalize">
+                          {item.name}
+                        </h3>
+                      </Link>
                       <p className="font-[family-name:var(--font-nav)] text-base font-medium mb-4">
                         R{item.price.toFixed(2)}
                       </p>
@@ -242,8 +277,10 @@ const Cart = () => {
 
                 {/* Wishlist Icon - Bottom Left of Image */}
                 <button 
+                  onClick={() => moveToWishlist(item._id)}
                   className="absolute bottom-2 left-2 z-10 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
-                  aria-label="Add to wishlist"
+                  aria-label="Move to wishlist"
+                  title="Move to wishlist"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

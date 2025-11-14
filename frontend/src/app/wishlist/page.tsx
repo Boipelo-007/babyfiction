@@ -85,19 +85,40 @@ export default function WishlistPage() {
     if (!item) return;
 
     try {
+      // First check if product is in stock
+      const productRes: any = await fetchJson(`/api/products/${item.id}`);
+      const product = productRes?.product || productRes?.data || productRes;
+      
+      // Check stock availability
+      const isInStock = product?.stock > 0 || product?.inStock !== false;
+      
+      if (!isInStock) {
+        alert('Sorry, this item is currently out of stock.');
+        return;
+      }
+
+      // Add to cart with correct parameter name
       await fetchJson('/api/cart/items', {
         method: 'POST',
-        body: JSON.stringify({ productId: item.id, quantity: 1 })
+        body: JSON.stringify({ product: item.id, quantity: 1 })
       });
       
+      // Remove from wishlist after successful add to cart
+      await fetchJson(`/api/wishlist/items/${item.id}`, { method: 'DELETE' });
+      
+      // Update both cart and wishlist
       if (typeof window !== 'undefined') {
         window.dispatchEvent(new Event('bf_cart_updated'));
+        window.dispatchEvent(new Event('bf_wishlist_updated'));
       }
       
-      alert('Item added to cart!');
+      // Reload wishlist to reflect changes
+      await loadWishlist();
+      
+      alert('Item moved to cart!');
     } catch (err) {
       console.error('Failed to add to cart:', err);
-      alert('Failed to add item to cart');
+      alert('Failed to add item to cart. Please try again.');
     }
   };
 
@@ -162,8 +183,8 @@ export default function WishlistPage() {
             <div className="space-y-6">
               {items.map((item) => (
                 <div key={item.id} className="flex gap-4 border border-gray-200 p-4 relative">
-                  {/* Product Image */}
-                  <div className="w-32 h-40 sm:w-40 sm:h-48 bg-gray-100 flex-shrink-0">
+                  {/* Product Image - Clickable */}
+                  <Link href={`/product/${item.id}`} className="w-32 h-40 sm:w-40 sm:h-48 bg-gray-100 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
                     <img
                       src={item.image || '/assets/images/products/placeholder.jpg'}
                       alt={item.name}
@@ -172,7 +193,7 @@ export default function WishlistPage() {
                         (e.target as HTMLImageElement).src = '/assets/images/products/placeholder.jpg';
                       }}
                     />
-                  </div>
+                  </Link>
 
                   {/* Product Details */}
                   <div className="flex-1 flex flex-col justify-between">
@@ -180,9 +201,11 @@ export default function WishlistPage() {
                       <div className="font-[family-name:var(--font-nav)] text-xs text-gray-500 mb-1 uppercase">
                         {item.category}
                       </div>
-                      <h3 className="font-[family-name:var(--font-nav)] text-base font-normal mb-2">
-                        {item.name}
-                      </h3>
+                      <Link href={`/product/${item.id}`} className="block hover:text-gray-600 transition-colors">
+                        <h3 className="font-[family-name:var(--font-nav)] text-base font-normal mb-2">
+                          {item.name}
+                        </h3>
+                      </Link>
                       <div className="font-[family-name:var(--font-nav)] text-sm mb-3">
                         {item.size}
                       </div>
@@ -193,8 +216,9 @@ export default function WishlistPage() {
                       <button
                         onClick={() => addToCart(item.id)}
                         className="bg-black text-white px-5 py-2.5 text-sm font-[family-name:var(--font-body)] font-medium hover:opacity-80 transition-opacity"
+                        title="Move to cart"
                       >
-                        Add to Cart
+                        Move to Cart
                       </button>
                     </div>
                   </div>
